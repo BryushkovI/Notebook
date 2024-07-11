@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Notebook.Data;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Notebook.AuthApp;
+using Microsoft.AspNetCore.Identity;
 namespace Notebook
 {
     public class Program
@@ -14,6 +16,26 @@ namespace Notebook
 
             
             builder.Services.AddMvc();
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<NotebookContext>()
+                    .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.AllowedForNewUsers = true;
+            });
+
+            //builder.Services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.Expiration = TimeSpan.FromDays(1);
+            //    options.LoginPath = "";
+            //    options.LogoutPath = ""; 
+            //});
+
             builder.Services.AddRazorPages();
             builder.Services.AddControllersWithViews();
 
@@ -26,7 +48,7 @@ namespace Notebook
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(name: "default", pattern: "{controller=Contact}/{action=Index}");
+            app.MapControllerRoute(name: "default", pattern: "{controller=Account}/{action=Login}");
 
             app.Run();
         }
