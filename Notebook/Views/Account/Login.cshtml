@@ -7,19 +7,15 @@
     <div class="row">
         <form asp-action="Login" asp-antiforgery="true">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ReturnUrl"/>
-            <label for="first">
-                Username:
-            </label>
+            <input type="hidden" asp-for="ReturnUrl" />
+
             <div class="col-xs-12">
                 <div class="form-group">
                     <input asp-for="UserName" class="form-control" placeholder="Имя пользователя"/>
                 </div>
             </div>
 
-            <label for="password">
-                Password:
-            </label>
+
             <div class="col-xs-12">
                 <div class="form-group">
                     <input asp-for="Password" class="form-control" placeholder="Пароль" />

@@ -28,14 +28,6 @@ namespace Notebook
                 options.Lockout.AllowedForNewUsers = true;
             });
 
-            //builder.Services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.Expiration = TimeSpan.FromDays(1);
-            //    options.LoginPath = "";
-            //    options.LogoutPath = ""; 
-            //});
-
             builder.Services.AddRazorPages();
             builder.Services.AddControllersWithViews();
 
@@ -48,7 +40,7 @@ namespace Notebook
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(name: "default", pattern: "{controller=Account}/{action=Login}");
+            app.MapControllerRoute(name: "default", pattern: "{controller=Contact}/{action=Index}");
 
             app.Run();
         }

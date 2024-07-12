@@ -22,7 +22,7 @@ namespace Notebook.Controllers
         {
             return View(new UserLogin()
             {
-                ReturnUrl = returnUrl 
+                ReturnUrl = returnUrl
             });
 
         }
@@ -84,7 +84,7 @@ namespace Notebook.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "A");
+            return RedirectToAction("Index", "Contact");
         }
 
     }
