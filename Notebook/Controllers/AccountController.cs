@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Notebook.AuthApp;
+using Notebook.Model;
 
 namespace Notebook.Controllers
 {
@@ -10,11 +12,14 @@ namespace Notebook.Controllers
 
         private readonly UserManager<User> _userManger;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManger = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -85,6 +90,32 @@ namespace Notebook.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Contact");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Roles() => View(await _roleManager.Roles.ToListAsync());
+        [HttpGet]
+        public IActionResult Create() => View();
+        [HttpPost]
+        public async Task<IActionResult> Create(string roleName)
+        {
+            if (!string.IsNullOrEmpty(roleName))
+            {
+                IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(roleName));
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    foreach(var identityError in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, identityError.Description);
+                    }
+                }
+            }
+            return View(roleName);
         }
 
     }
