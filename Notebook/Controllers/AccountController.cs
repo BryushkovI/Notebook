@@ -12,14 +12,12 @@ namespace Notebook.Controllers
 
         private readonly UserManager<User> _userManger;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManger = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -93,30 +91,19 @@ namespace Notebook.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Roles() => View(await _roleManager.Roles.ToListAsync());
-        [HttpGet]
-        public IActionResult Create() => View();
-        [HttpPost]
-        public async Task<IActionResult> Create(string roleName)
+        public async Task<IActionResult> CurrentUser(string userName)
         {
-            if (!string.IsNullOrEmpty(roleName))
+            if (User.Identity.Name == userName)
             {
-                IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(roleName));
-
-                if (result.Succeeded)
+                var user = await _userManger.FindByNameAsync(userName);
+                if (user == null)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return NotFound();
                 }
-                else
-                {
-                    foreach(var identityError in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, identityError.Description);
-                    }
-                }
+                user.Roles = await _userManger.GetRolesAsync(user);
+                return View(user);
             }
-            return View(roleName);
+            return Forbid();
         }
-
     }
 }

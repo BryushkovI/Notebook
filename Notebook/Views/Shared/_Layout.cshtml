@@ -18,6 +18,9 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
+                                <a class="nav-link" asp-controller="Account" asp-action="CurrentUser" asp-route-userName="@User.Identity.Name">@User.Identity.Name</a>
+                            </li>
+                            <li>
                                 <a class="nav-link" asp-controller="Account" asp-action="Logout">Выйти</a>
                             </li>
                         }

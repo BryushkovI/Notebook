@@ -1,0 +1,34 @@
+﻿@model Notebook.AuthApp.User
+@{
+    ViewData["Title"] = "Мой пользователь";
+}
+
+<h1>@Html.DisplayFor(model => model.UserName)</h1>
+
+<div class="card-group">
+    <div class="col-xs-12">
+        <p>@User.Identity.Name</p>
+    </div>
+    <div class="col-xs-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Наименование роли</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Roles)
+                {
+                    <tr>
+                        <td>
+                            @item
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p/>
+    <a asp-controller="AssigningRole" asp-action="Change" asp-route-userName="@User.Identity.Name">Изменить роли</a>
+</div>
+

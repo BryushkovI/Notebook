@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 @{
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = "Список ролей";
 }
 
-<h1>Список ролей</h1>
+<h2>Список ролей пользователя @User.Identity.Name</h2>
 
 <table class="table">
     <thead>
@@ -11,7 +11,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
