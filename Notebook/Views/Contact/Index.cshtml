@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Список</h1>
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -45,11 +45,42 @@
             <td>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
-                    if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <form asp-action="Details" method="get">
+                        <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" /> 
+                        <div>
+                            <button type="submit">
+                               Подробнее
+                            </button>
+                        </div>
+                    </form>
+                    @* <button type="button" class="btn-action">
+                        <a class="btn-link" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                    </button> *@
+
+                        if (User.IsInRole("Admin"))
+                        {
+                        <form asp-action="Delete" method="get">
+                            <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" />
+                            <div>
+                                <button type="submit">
+                                    Удалить
+                                </button>
+                            </div>
+                        </form>
+                        @* <button type="button" class="btn-action">
+                            <a class="btn-link" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        </button> *@
+                        <form asp-action="Edit" method="get">
+                            <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" />
+                            <div>
+                                <button type="submit">
+                                    Изменить
+                                </button>
+                            </div>
+                        </form>
+                        @* <button type="button" class="btn-action">
+                            <a class="btn-link" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                        </button> *@
                     }
                 }
             </td>

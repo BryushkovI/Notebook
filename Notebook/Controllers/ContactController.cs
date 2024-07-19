@@ -29,6 +29,7 @@ namespace Notebook.Controllers
 
         // GET: Contact/Details/5
         [Authorize]
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -73,6 +74,7 @@ namespace Notebook.Controllers
 
         // GET: Contact/Edit/5
         [Authorize(Roles = "Admin")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -126,6 +128,7 @@ namespace Notebook.Controllers
 
         // GET: Contact/Delete/5
         [Authorize(Roles = "Admin")]
+        [HttpGet, ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
