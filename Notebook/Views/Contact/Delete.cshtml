@@ -51,7 +51,11 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Список контактов</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
 </div>
+<form class="form-action" asp-controller="Contact" asp-action="Index" method="get">
+    <button class="btn-action" type="submit">
+        К списку контактов
+    </button>
+</form>

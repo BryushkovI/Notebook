@@ -5,11 +5,9 @@
 }
 
 <h1>Создание контакта</h1>
-
-<h4>Контакт</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -50,7 +48,11 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <form asp-controller="Contact" asp-action="Index" method="get">
+        <button class="btn-action" type="submit">
+            К списку контактов
+        </button>
+    </form>
 </div>
 
 @section Scripts {

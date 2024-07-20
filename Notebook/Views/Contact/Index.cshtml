@@ -8,12 +8,13 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    if (User.IsInRole("Admin"))
-    {
-        <p>
-            <a asp-action="Create">Добавить новую запись</a>
-        </p>
-    }
+    <form class="form-action" asp-action="Create" method="get">
+        <div>
+            <button class="btn-action" type="submit">
+                Создать новую запись
+            </button>
+        </div>
+    </form>
 }
 <table class="table">
     <thead>
@@ -43,46 +44,36 @@
                 @Html.DisplayFor(modelItem => item.MiddleName)
             </td>
             <td>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <form asp-action="Details" method="get">
+                <div class="div-actions">
+                    <form class="form-action" asp-action="Details" method="get">
                         <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" /> 
                         <div>
-                            <button type="submit">
-                               Подробнее
+                            <button class="btn-action" type="submit">
+                                Подробнее
                             </button>
                         </div>
                     </form>
-                    @* <button type="button" class="btn-action">
-                        <a class="btn-link" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
-                    </button> *@
 
-                        if (User.IsInRole("Admin"))
-                        {
-                        <form asp-action="Delete" method="get">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    { 
+                        <form class="form-action" asp-action="Delete" method="get">
                             <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" />
-                            <div>
-                                <button type="submit">
+                            <div >
+                                <button class="btn-action" type="submit">
                                     Удалить
                                 </button>
                             </div>
                         </form>
-                        @* <button type="button" class="btn-action">
-                            <a class="btn-link" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                        </button> *@
-                        <form asp-action="Edit" method="get">
+                        <form class="form-action" asp-action="Edit" method="get">
                             <input type="hidden" asp-for="FirstOrDefault(e => e.Id == item.Id).Id" value="@item.Id" />
                             <div>
-                                <button type="submit">
+                                <button class="btn-action" type="submit">
                                     Изменить
                                 </button>
                             </div>
                         </form>
-                        @* <button type="button" class="btn-action">
-                            <a class="btn-link" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
-                        </button> *@
                     }
-                }
+                </div>
             </td>
         </tr>
 }

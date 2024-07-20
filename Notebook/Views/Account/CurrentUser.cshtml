@@ -3,12 +3,10 @@
     ViewData["Title"] = "Мой пользователь";
 }
 
-<h1>@Html.DisplayFor(model => model.UserName)</h1>
+<h1>Роли пользователя: @Html.DisplayFor(model => model.UserName)</h1>
 
 <div class="card-group">
-    <div class="col-xs-12">
-        <p>@User.Identity.Name</p>
-    </div>
+
     <div class="col-xs-12">
         <table class="table">
             <thead>
@@ -29,6 +27,14 @@
         </table>
     </div>
     <p/>
-    <a asp-controller="AssigningRole" asp-action="Change" asp-route-userName="@User.Identity.Name">Изменить роли</a>
 </div>
+
+<form asp-controller="AssigningRole" asp-action="Change" class="form-roles" method="get">
+    <input type="hidden" asp-for="UserName" />
+    <div>
+        <button class="btn-action" type="submit">
+            Изменить роли
+        </button>
+    </div>
+</form>
 

@@ -19,10 +19,6 @@ namespace Notebook.Controllers
         [HttpGet]
         public async Task<IActionResult> Change(string userName)
         {
-            //IList<(bool, string)> model = [];
-
-            
-
             if (!string.IsNullOrEmpty(userName) && User.Identity.Name == userName)
             {
                 User? user = await _userManger.FindByNameAsync(userName);

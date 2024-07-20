@@ -51,7 +51,19 @@
 <div>
     @if (User.IsInRole("Admin"))
     {
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <form class="form-action" asp-action="Edit" method="get">
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <button class="btn-action" type="submit">
+                    Изменить
+                </button>
+            </div>
+        </form>
+        <p/>
     }
-    <a asp-action="Index">Back to List</a>
+    <form class="form-action" asp-controller="Contact" asp-action="Index" method="get">
+        <button class="btn-action" type="submit">
+            К списку контактов
+        </button>
+    </form>
 </div>

@@ -88,8 +88,9 @@ button {
     padding: 0.5rem 4rem 0.5rem 0rem;
 }
 
-.table > :not(caption) > * > :last-child{
+.table > :not(caption) > * > :nth-child(4){
     width: 400px;
+    padding: 0;
 }
 
 .btn-link {
@@ -99,8 +100,25 @@ button {
     padding: 1em;
 }
 
-.btn-action {
+.form-action {
     padding: initial;
-    width: 33.33%;
-    padding: inherit;
+    width: 30%;
+    margin: 0 0.2rem;
+}
+
+.div-actions{
+    display: flex;
+}
+
+.btn-action{
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.form-roles{
+    width: initial;
+}
+
+.card-group{
+    display: block;
 }

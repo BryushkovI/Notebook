@@ -49,7 +49,7 @@ namespace Notebook.Controllers
 
         // GET: Contact/Create
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -60,7 +60,7 @@ namespace Notebook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,MiddleName,Phone,Address,Description")] Contact contact)
         {
             if (ModelState.IsValid)
