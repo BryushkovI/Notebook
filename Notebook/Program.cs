@@ -12,7 +12,8 @@ namespace Notebook
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<NotebookContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("NotebookContext") ?? throw new InvalidOperationException("Connection string 'NotebookContext' not found.")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("NotebookContext") ?? throw new InvalidOperationException("Connection string 'NotebookContext' not found.")));
 
             
             builder.Services.AddMvc();

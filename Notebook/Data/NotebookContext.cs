@@ -18,6 +18,6 @@ namespace Notebook.Data
             Database.EnsureCreated();
         }
 
-        public DbSet<Notebook.Model.Contact> Contact { get; set; } = default!;
+        public DbSet<Contact> Contact { get; set; } = default!;
     }
 }
