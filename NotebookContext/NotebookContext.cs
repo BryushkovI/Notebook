@@ -2,6 +2,7 @@
 using AuthAppLib.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NotebookContext.Model;
 
 namespace NotebookContext
 {
@@ -13,6 +14,6 @@ namespace NotebookContext
             Database.EnsureCreated();
         }
 
-        public DbSet<Model.Contact> Contact { get; set; } = default!;
+        public DbSet<Contact> Contact { get; set; } = default!;
     }
 }

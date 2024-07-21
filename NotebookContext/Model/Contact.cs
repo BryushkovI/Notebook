@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace NotebookContext.Model
 {
     public class Contact
     {

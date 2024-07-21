@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Notebook.Data;
-using Notebook.Model;
+using NotebookContext.Model;
 using Microsoft.AspNetCore.Authorization;
 using Notebook.Data.Interfaces;
 

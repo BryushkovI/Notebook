@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using Model;
+using NotebookContext.Model;
 
 namespace Notebook.Controllers
 {

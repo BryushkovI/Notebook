@@ -1,5 +1,5 @@
 ﻿using Notebook.Data.Interfaces;
-using Notebook.Model;
+using NotebookContext.Model;
 
 namespace Notebook.Data
 {

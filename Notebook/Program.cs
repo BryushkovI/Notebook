@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Notebook.Data;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
-using Notebook.AuthApp;
 using Microsoft.AspNetCore.Identity;
 using Notebook.Data.Interfaces;
+using AuthAppLib.Model;
 namespace Notebook
 {
     public class Program
@@ -12,7 +12,7 @@ namespace Notebook
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<NotebookContext>(options =>
+            builder.Services.AddDbContext<NotebookContext.NotebookContext>(options =>
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("NotebookContext") ?? throw new InvalidOperationException("Connection string 'NotebookContext' not found.")));
 
@@ -20,7 +20,7 @@ namespace Notebook
             builder.Services.AddMvc();
 
             builder.Services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<NotebookContext>()
+                    .AddEntityFrameworkStores<NotebookContext.NotebookContext>()
                     .AddDefaultTokenProviders();
 
 

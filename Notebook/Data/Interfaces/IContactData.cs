@@ -1,4 +1,4 @@
-﻿using Notebook.Model;
+﻿using NotebookContext.Model;
 
 namespace Notebook.Data.Interfaces
 {

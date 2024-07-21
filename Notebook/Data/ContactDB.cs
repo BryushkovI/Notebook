@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notebook.Data.Interfaces;
-using Notebook.Model;
+using NotebookContext.Model;
 
 namespace Notebook.Data
 {
     public class ContactDB : IContactData
     {
-        readonly NotebookContext _context;
-        public ContactDB(NotebookContext context)
+        readonly NotebookContext.NotebookContext _context;
+        public ContactDB(NotebookContext.NotebookContext context)
         {
             _context = context;
         }

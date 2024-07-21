@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Notebook.AuthApp;
-using Notebook.Model;
+using AuthAppLib.Model;
 
 namespace Notebook.Controllers
 {
