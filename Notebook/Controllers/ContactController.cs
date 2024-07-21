@@ -9,22 +9,24 @@ using Microsoft.EntityFrameworkCore;
 using Notebook.Data;
 using Notebook.Model;
 using Microsoft.AspNetCore.Authorization;
+using Notebook.Data.Interfaces;
 
 namespace Notebook.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly NotebookContext _context;
 
-        public ContactController(NotebookContext context)
+        private readonly IContactData _contactData;
+
+        public ContactController(IContactData contactData)
         {
-            _context = context;
+            _contactData = contactData;
         }
 
         // GET: Contact
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Contact.ToListAsync());
+            return View(await _contactData.GetContactsAsync());
         }
 
         // GET: Contact/Details/5
@@ -37,8 +39,7 @@ namespace Notebook.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contact
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var contact = await _contactData.GetContactAsync(id);
             if (contact == null)
             {
                 return NotFound();
@@ -65,8 +66,7 @@ namespace Notebook.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contact);
-                await _context.SaveChangesAsync();
+                await _contactData.CreateContactAsync(contact);
                 return RedirectToAction(nameof(Index));
             }
             return View(contact);
@@ -82,7 +82,7 @@ namespace Notebook.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contact.FindAsync(id);
+            var contact = await _contactData.GetContactAsync(id);
             if (contact == null)
             {
                 return NotFound();
@@ -107,8 +107,7 @@ namespace Notebook.Controllers
             {
                 try
                 {
-                    _context.Update(contact);
-                    await _context.SaveChangesAsync();
+                    await _contactData.UpdateContactAsync(contact);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -136,8 +135,7 @@ namespace Notebook.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contact
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var contact = await _contactData.GetContactAsync(id);
             if (contact == null)
             {
                 return NotFound();
@@ -152,19 +150,18 @@ namespace Notebook.Controllers
         [Authorize(Roles ="Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var contact = await _context.Contact.FindAsync(id);
+            var contact = await _contactData.GetContactAsync(id);
             if (contact != null)
             {
-                _context.Contact.Remove(contact);
+                await _contactData.DeleteContactAsync(id);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContactExists(int id)
         {
-            return _context.Contact.Any(e => e.Id == id);
+            return _contactData.ContactExists(id);
         }
     }
 }
