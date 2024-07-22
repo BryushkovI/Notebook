@@ -16,7 +16,7 @@ namespace Notebook
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("NotebookContext") ?? throw new InvalidOperationException("Connection string 'NotebookContext' not found.")));
 
-            builder.Services.AddTransient<IContactData, ContactDB>();
+            builder.Services.AddTransient<IContactData, ContactApi>();
             builder.Services.AddMvc();
 
             builder.Services.AddIdentity<User, IdentityRole>()

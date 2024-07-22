@@ -30,7 +30,6 @@ namespace Notebook.Controllers
         }
 
         // GET: Contact/Details/5
-        //[Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Contact>> Get(int id)
         {
@@ -53,17 +52,15 @@ namespace Notebook.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        //[Authorize]
-        public async Task<ActionResult<Contact>> Create([Bind("Id,FirstName,LastName,MiddleName,Phone,Address,Description")] Contact contact)
+        public async Task<ActionResult<Contact>> Create([FromBody] Contact contact)
         {
-            if (ModelState.IsValid)
+            try
             {
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return Ok(contact);
             }
-            else
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -72,38 +69,30 @@ namespace Notebook.Controllers
         // PUT: Contact/Put/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin")]
-        public async Task<ActionResult<Contact>> Put(int id, [Bind("Id,FirstName,LastName,MiddleName,Phone,Address,Description")] Contact contact)
+        [HttpPut]
+        public async Task<ActionResult<Contact>> Put([Bind("Id,FirstName,LastName,MiddleName,Phone,Address,Description")] Contact contact)
         {
-            if (ModelState.IsValid && id == contact.Id)
+            try
             {
-                try
+                _context.Update(contact);
+                await _context.SaveChangesAsync();
+                return Ok(contact);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ContactExists(contact.Id))
                 {
-                    _context.Update(contact);
-                    await _context.SaveChangesAsync();
-                    return Ok(contact);
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!ContactExists(contact.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return BadRequest();
                 }
             }
-            return BadRequest();
         }
 
         // POST: Contact/Delete/5
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
-        //[Authorize(Roles ="Admin")]
         public async Task<ActionResult<Contact>> Delete(int id)
         {
             var contact = await _context.Contact.FindAsync(id);

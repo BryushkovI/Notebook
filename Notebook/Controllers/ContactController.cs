@@ -30,7 +30,7 @@ namespace Notebook.Controllers
         }
 
         // GET: Contact/Details/5
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
