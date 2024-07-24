@@ -5,13 +5,15 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook", "Notebook\Notebook.csproj", "{DDF292FB-6B20-4D4E-82E6-4B0CDD23E84D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotebookApi", "NotebookApi\NotebookApi.csproj", "{AEB1BED6-E25F-4FB6-89BD-673617C51B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotebookApi", "NotebookApi\NotebookApi.csproj", "{AEB1BED6-E25F-4FB6-89BD-673617C51B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthAppApi", "AuthAppApi\AuthAppApi.csproj", "{E8BE9A09-733D-4770-AA94-DF3D2B97483B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAppApi", "AuthAppApi\AuthAppApi.csproj", "{E8BE9A09-733D-4770-AA94-DF3D2B97483B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotebookContext", "NotebookContext\NotebookContext.csproj", "{FC4213C3-DCCB-4E08-BF9E-847AA23115C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotebookContext", "NotebookContext\NotebookContext.csproj", "{FC4213C3-DCCB-4E08-BF9E-847AA23115C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthAppLib", "AuthAppLib\AuthAppLib.csproj", "{71C37E85-DD69-4E97-AA13-90A8F8C35B47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAppLib", "AuthAppLib\AuthAppLib.csproj", "{71C37E85-DD69-4E97-AA13-90A8F8C35B47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotebookDesktop", "NotebookDesktop\NotebookDesktop.csproj", "{9FD3E695-B910-439F-8126-FD87D30B3A19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{71C37E85-DD69-4E97-AA13-90A8F8C35B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71C37E85-DD69-4E97-AA13-90A8F8C35B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71C37E85-DD69-4E97-AA13-90A8F8C35B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD3E695-B910-439F-8126-FD87D30B3A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD3E695-B910-439F-8126-FD87D30B3A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD3E695-B910-439F-8126-FD87D30B3A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD3E695-B910-439F-8126-FD87D30B3A19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
